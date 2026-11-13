@@ -1,8 +1,7 @@
 
 import os
 
-from vault import TokenVault
-
+from .vault import TokenVault
 
 def main():
     # В реальном окружении ключ должен поступать

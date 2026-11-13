@@ -1,7 +1,7 @@
 
 import os
 
-from feistel import FeistelFPE
+from .feistel import FeistelFPE
 
 
 def main():
@@ -13,19 +13,28 @@ def main():
         rounds=12
     )
 
-    original = "123456789012"
+    test_values = [
+        "79161234567",          # 11 цифр
+        "123456789",            # 9 цифр
+        "1234567890123",        # 13 цифр
+        "1234567890123456",     # 16 цифр
+        "12345678901234567890"  # 20 цифр
+    ]
 
-    encrypted = cipher.encrypt(original)
-    decrypted = cipher.decrypt(encrypted)
+    for original in test_values:
+        encrypted = cipher.encrypt(original)
+        decrypted = cipher.decrypt(encrypted)
 
-    print("Исходные данные:", original)
-    print("Зашифрованные данные:", encrypted)
-    print("Расшифрованные данные:", decrypted)
+        print("-" * 45)
+        print("Исходное значение:", original)
+        print("Зашифрованное:", encrypted)
+        print("Расшифрованное:", decrypted)
+        print("Длина:", len(encrypted))
 
-    assert len(original) == len(encrypted)
-    assert original == decrypted
+        assert len(encrypted) == len(original)
+        assert decrypted == original
 
-    print("Проверка пройдена!")
+    print("\nВсе проверки пройдены!")
 
 
 if __name__ == "__main__":

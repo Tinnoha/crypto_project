@@ -4,8 +4,7 @@ import hmac
 import secrets
 import sqlite3
 
-from crypto_engine import CryptoEngine
-
+from .crypto_engine import CryptoEngine
 
 class TokenVault:
 
